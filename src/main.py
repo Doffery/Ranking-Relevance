@@ -109,14 +109,14 @@ def model():
     query = Input(shape=(MAX_QUERY_LENGTH,))
     embedding_q = Embedding(VAC_SIZE, 64, input_length=MAX_QUERY_LENGTH, 
                             trainable=False)(query)
-    conv_q= Conv1D(100, 1, padding='same', activation='relu')(embedding_q)
+    conv_q= Conv1D(100, 2, padding='same', activation='relu')(embedding_q)
     conv_q = Dropout(0.25)(conv_q)
     pool_q = GlobalMaxPooling1D()(conv_q)
 
     title = Input(shape=(MAX_SEQ_LENGTH, ))
     embedding_a  = Embedding(VAC_SIZE, 64, input_length=MAX_QUERY_LENGTH,
                              trainable=False)(title)
-    conv_a = Conv1D(100, 6, padding='same', activation='relu')(embedding_a)
+    conv_a = Conv1D(100, 4, padding='same', activation='relu')(embedding_a)
     conv_a = Dropout(0.25)(conv_a)
     pool_a = GlobalMaxPooling1D()(conv_a)
 
